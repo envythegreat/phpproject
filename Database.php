@@ -31,7 +31,8 @@ class Database {
         $x = 1;
         foreach ( $params as $param ) :
           if(is_array($param)):
-            $param = json_encode($param, JSON_FORCE_OBJECT);
+            $param = json_encode($param);
+            var_dump($param);
             $this->_query->bindValue($x, $param);
           endif;
           $this->_query->bindValue($x, $param);
@@ -47,7 +48,6 @@ class Database {
 
   public function insert( String $table, Array $fields ) {
     $values = array_values( $fields );
-
     $fieldString = "`" . implode( "`, `", array_keys( $fields ) ) . "`";
 
     $valueString = '';
